@@ -12,3 +12,8 @@ What I know about the project
 #3/24/25 12:31 PM:
     a) New thoughts: start with encryption program first, then implement logger program, then driver program last.
     b) This session I plan to accomplish the encryption program, or at least get a start on it and outline my code with comments so I can think about how to implement it. If I get through this program, I will move onto the logger program. My goal is to get some start on the encryption program or at least have a good idea of what kind of functions I need to implement to complete this program.
+
+#3/24/25 1:04 PM:
+    a) Some problems I encountered: while loop for if-else statements in the encryption program kept making infinite results and jupyter lab kept crashing; just had to to move the while loop around. Also was confused about the passkey because I'm unsure how to get it from the encryption program.
+    b) I accomplished my goal for this session, I ws able to create the encryption program but I set my own passkey within this program because I didn't have it set up in the driver program yet.
+    c) Next session I plan to work on the logger file. Once finished, I will try to do the driver program and integrate all three files.

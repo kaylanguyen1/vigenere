@@ -17,3 +17,7 @@ What I know about the project
     a) Some problems I encountered: while loop for if-else statements in the encryption program kept making infinite results and jupyter lab kept crashing; just had to to move the while loop around. Also was confused about the passkey because I'm unsure how to get it from the encryption program.
     b) I accomplished my goal for this session, I ws able to create the encryption program but I set my own passkey within this program because I didn't have it set up in the driver program yet.
     c) Next session I plan to work on the logger file. Once finished, I will try to do the driver program and integrate all three files.
+
+#3/24/25 4:41 PM:
+    a) No new developments/thoughts about project
+    b) My goal for this session is to complete the logger and driver program. I believe the logger program consists of making a function that adds the date and time of each output and copies the output from other programs into the log file. It needs to accept the name of a log file and terminate once it sees the quit command from the driver. For the driver progam, I need to create the pipes that connect the stdin and stdout from the different programs. Once I get the pipes working I can correctly integrate all of the programs.

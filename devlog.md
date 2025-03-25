@@ -21,3 +21,12 @@ What I know about the project
 #3/24/25 4:41 PM:
     a) No new developments/thoughts about project
     b) My goal for this session is to complete the logger and driver program. I believe the logger program consists of making a function that adds the date and time of each output and copies the output from other programs into the log file. It needs to accept the name of a log file and terminate once it sees the quit command from the driver. For the driver progam, I need to create the pipes that connect the stdin and stdout from the different programs. Once I get the pipes working I can correctly integrate all of the programs.
+
+#3/24/25 7:03 PM:
+    a) some problems I encountered:
+        * the passkey wasn't being properly sent from the driver program to the encryption program, I was pssing it as "[PASS] key" when encryp.py accepted "PASS key"
+        * encrypt.py couldn't find a passkey because I didn't have it as a locally defined variable
+        * the output from encrypt.py isn't being properly printed to log file and command line, still isn't fixed
+        * logger file wasn't accepting the name of the file because I wasn't reading it in
+    b) I accomplished my goal for this session as I was able to complete the logger and driver program. For easier debugging, I made a copy of driver.py as a driver.ipynb so that I could see the command line if there were issues in jupyter lab. 
+    c) Next session I need to work on the communication through pipes since there's an issue with the output from encrypt.py not being properly printed on the command line and log file. After that I'll be able to check if the program is working.

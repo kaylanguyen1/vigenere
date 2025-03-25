@@ -30,3 +30,7 @@ What I know about the project
         * logger file wasn't accepting the name of the file because I wasn't reading it in
     b) I accomplished my goal for this session as I was able to complete the logger and driver program. For easier debugging, I made a copy of driver.py as a driver.ipynb so that I could see the command line if there were issues in jupyter lab. 
     c) Next session I need to work on the communication through pipes since there's an issue with the output from encrypt.py not being properly printed on the command line and log file. After that I'll be able to check if the program is working.
+
+#3/24/25 8:03 PM:
+    a) I think I should look at the class example code again to better understand how pipe communication works and see what I can add to ensure the stdin and stdout are connected properly.
+    b) In this session I plan to get the stdout from encrypt.py working. To do this I will look through the cpu.py and mem.py examples and try to see what the differences are between them and my program. I will also add more checkpoints throughout my programs to see if I can find the root cause of the issue. Thus, my goal for this session is to determine why the stdout isn't working and attempt to fix it.

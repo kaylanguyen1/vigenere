@@ -29,27 +29,44 @@ def main():
 
     
     while True:
-        line = input()
+        line = sys.stdin.readline().strip()
         parts = line.split()
+        if len(parts) < 2:
+            print("ERROR invalid command")
+            sys.stdout.flush()
+            continue
+
+        command = parts[0]
+        argument = parts[1]
+
     
         #if else statements
         if parts[0] == 'PASS':
             #set current passkey
-            print('pass')
+            passkey = argument
+            print("RESULT")
         elif parts[0] == 'ENCRYPT':
             #encrypt parts[1] with current passkey and output result
             #if no passkey then pass error
-            print('encrypt')
+            if not passkey:
+                print("ERROR Passkey not set")
+            else:
+                print("RESULT", vigenere_cipher(argument, passkey))
         elif parts[0] == 'DECRYPT':
             #decrypt argument with current passkey and output result
             #if no passkey then pass error
-            print('decrypt')
+            if not passkey:
+                print("ERROR Passkey not set")
+            else:
+                print("RESULT", vigenere_cipher(argument, passkey, decrypt=True))
         elif parts[0] == 'QUIT':
             #exit program go back to driver
+            print("RESULT Quit")
+            sys.stdout.flush()
             break
         else:
             print("ERROR invalid command")
-
+        sys.stdout.flush()
 
 if __name__ == "__main__":
     main()

@@ -20,7 +20,7 @@ def main():
         password
         encrypt
         decrypt
-        history,
+        history
         quit
         """)
 
@@ -41,79 +41,152 @@ def main():
                 encrypt.stdin.write(f"PASS {password}\n")
                 encrypt.stdin.flush()
 
+                result = encrypt.stdout.readline().rstrip()
+                print(result)
+                log.stdin.write(f"[PASSKEY] {password}\n")
             #old password
             elif pwchoice == "history":
-                #create history
-                for i, item in enumerate(history):
-                    print(f"{i+1}: {item}")
-                index = int(input("Select index: ")) - 1
-                passkey = history[index]
+                #loop through history
+                if len(history) == 0:
+                    print("No history available")
+                    log.stdin.write(f"[ERROR] no history available\n")
+                    log.stdin.flush()
+                    continue
+                else:   
+                    for i, item in enumerate(history):
+                        print(f"{i+1}: {item}")
+                    index = int(input("Select index: ")) - 1
+                    password = history[index]
+                    encrypt.stdin.write(f"PASS {password}\n")
+                    encrypt.stdin.flush()
+    
+                    result = encrypt.stdout.readline().rstrip()
+                    print(result)
+                    log.stdin.write(f"[PASSKEY] {password}\n")
+            #old password
             else:
                 print("Invalid choice")
+                log.stdin.write("[ERROR] Invalid password choice\n")
 
         #if command is encrypt
         elif choice == "encrypt":
             #if no password set then go back to menu
             if password is None:
                 print("ERROR password not set")
+                log.stdin.write(f"[ERROR] passkey not set\n")
+                log.stdin.flush()
                 continue
             #pick old or new string to encrypt
             enchoice = input("Pick 'history' or 'new' string: ")
+            log.stdin.write(f"[ENCRYPT] Pick 'history' or 'new' string: {enchoice}\n")
+            log.stdin.flush()
             #new string
             if enchoice == "new":
-                txt = input("Enter new string: ")
+                text = input("Enter new string: ")
                 #only allow alphabetic characters in string
                 if not text.isalpha():
-                    print("Error: Only letters allowed.")
+                    print("ERROR Only letters allowed.")
+                    log.stdin.write(f"[ERROR] Only letters allowed\n")
+                    log.stdin.flush()
                     continue
-                encrypt.stdin.write(f"ENCRYPT {text}\n")
+                txt = text.upper()
+                encrypt.stdin.write(f"ENCRYPT {txt}\n")
                 encrypt.stdin.flush()
+                log.stdin.write(f"[ENCRYPT] {txt}\n")
+                log.stdin.flush()
+
+                result = encrypt.stdout.readline().rstrip()
+                print(result)
+                log.stdin.write(f"[ENCRYPT] {result}\n")
+                
                 history.append(text)
                 
             #old string
             elif enchoice == "history":
                 #print history
-                for i, item in enumerate(history):
-                    print(f"{i+1}: {item}")
-                index = int(input("Select index: ")) - 1
-                encrypt.stdin.write(f"ENCRYPT {text}\n")
-                encrypt.stdin.flush()
-                history.append(text)
-                #allow user to pick from history
+                if len(history) == 0:
+                    print("No history available")
+                    log.stdin.write(f"[ERROR] no history available\n")
+                    log.stdin.flush()
+                    continue
+                else: 
+                    for i, item in enumerate(history):
+                        print(f"{i+1}: {item}")
+                    index = int(input("Select index: ")) - 1
+                    text = history[index]
+                    
+                    encrypt.stdin.write(f"ENCRYPT {text}\n")
+                    encrypt.stdin.flush()
+                    log.stdin.write(f"[ENCRYPT] {text}\n")
+                    log.stdin.flush()
+    
+                    result = encrypt.stdout.readline().rstrip()
+                    print(result)
+                    log.stdin.write(f"[ENCRYPT] {result}\n")
 
             else:
-                print("Error: Invalid encryption choice")
+                print("ERROR Invalid encryption choice")
+                log.stdin.write("[ERROR] Invalid encryption choice\n")
 
         #if command is decrypt
         elif choice == "decrypt":
             if password is None:
-                print("Output: ERROR password not set")
+                print("ERROR password not set")
+                log.stdin.write(f"[ERROR] passkey not set\n")
+                log.stdin.flush()
                 continue
 
             dechoice = input("Pick 'history' or 'new' string: ")
+            log.stdin.write(f"[DECRYPT] Pick 'history' or 'new' string: {dechoice}\n")
+            log.stdin.flush()
+            
             #if decrypting new string
             if dechoice == "new":
-                txt = input("Enter new string: ")
+                text = input("Enter new string: ")
                 if not text.isalpha():
-                    print("Error: Only letters allowed.")
+                    print("ERROR Only letters allowed.")
+                    log.stdin.write(f"[ERROR] Only letters allowed\n")
+                    log.stdin.flush()
                     continue
-                encrypt.stdin.write(f"DECRYPT {text}\n")
+
+                txt = text.upper()
+                encrypt.stdin.write(f"DECRYPT {txt}\n")
                 encrypt.stdin.flush()
+                log.stdin.write(f"DECRYPT {txt}\n")
+                log.stdin.flush()
+
+                result = encrypt.stdout.readline().rstrip()
+                print(result)
+                log.stdin.write(f"[DECRYPT] {result}\n")
+
                 history.append(text)
-                print(encrypt.stdout.readline.rstrip())
-                    
+                
             #if decrypting old string
             elif dechoice == "history":
                 #print menu
-                for i, item in enumerate(history):
-                    print(f"{i+1}: {item}")
-                index = int(input("Select index: ")) - 1
-                encrypt.stdin.write(f"DECRYPT {text}\n")
-                encrypt.stdin.flush()
-                history.append(text)
-                #allow user to pick a string
+                if len(history) == 0:
+                    print("No history available")
+                    log.stdin.write(f"[ERROR] no history available\n")
+                    log.stdin.flush()
+                    continue
+                else: 
+                    for i, item in enumerate(history):
+                        print(f"{i+1}: {item}")
+                    index = int(input("Select index: ")) - 1
+                    text = history[index]
+                    
+                    encrypt.stdin.write(f"DECRYPT {text}\n")
+                    encrypt.stdin.flush()
+                    log.stdin.write(f"DECRYPT {text}\n")
+                    log.stdin.flush()
+    
+                    result = encrypt.stdout.readline().rstrip()
+                    print(result)
+                    log.stdin.write(f"[DECRYPT] {result}\n")
+               
             else:
                 print("ERROR Invalid decryption choice")
+                log.stdin.write("[ERROR] Invalid decryption choice\n")
 
         #if command is history
         elif choice == "history":
@@ -121,10 +194,16 @@ def main():
             for item in history:
                 print(item)
 
+            history_string = "\n".join(history) if history else "No history"
+            log.stdin.write(f"[HISTORY]: \n{history_string}\n")
+            log.stdin.flush()
+
         #if command is quit
         elif choice == "quit":
             encrypt.stdin.write("QUIT NOW\n")
             encrypt.stdin.flush()
+            print(encrypt.stdout.readline().rstrip())
+            
             log.stdin.write("[QUIT] Exiting program\n")
             log.stdin.flush()
 

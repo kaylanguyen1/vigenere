@@ -1,4 +1,0 @@
-2025-03-24 18:59 [START] Driver program started
-2025-03-24 18:59 [COMMAND] password
-2025-03-24 18:59 [PASSWORD] Pick 'history' or 'new': new
-2025-03-24 18:59 [COMMAND] encrypt

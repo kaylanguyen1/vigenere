@@ -20,3 +20,5 @@ This file holds my devlog that I wrote in describing the work I did in each sess
 #Running the program:
 To run the program, ensure that driver.py, encrypt.py, logger.py, and log_file.txt are all in the same directory. Open the driver.py file and run it. Once running, it should ask for the name of the log file, which would be "log_file.txt". Once its name is  inputted, it should display a menu of choices and directions for each choice on how to proceed. Once done with the program, type in quit as a menu choice. Ensure passkeys are written in uppercase and all strings only use alphabetic characters or else there will be an error message.
 
+#Notes for TA:
+To help me with running the code, I copied the driver.py file into an Untitled.ipynb file so I could see the output and errors on jupyter lab. I've attached the ipynb file to this repository as well so changes from it can be seen.

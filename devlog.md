@@ -34,3 +34,10 @@ What I know about the project
 #3/24/25 8:03 PM:
     a) I think I should look at the class example code again to better understand how pipe communication works and see what I can add to ensure the stdin and stdout are connected properly.
     b) In this session I plan to get the stdout from encrypt.py working. To do this I will look through the cpu.py and mem.py examples and try to see what the differences are between them and my program. I will also add more checkpoints throughout my programs to see if I can find the root cause of the issue. Thus, my goal for this session is to determine why the stdout isn't working and attempt to fix it.
+
+#3/24/25 10:22 PM:
+    a) some problems I encountered:
+        a) stdout not working with encrypt.py: added \n to end of every output to ensure it was accepted to the predetermined format, added print(encrypt.stdout.readline().strip()) to anywhere in the driver program where I was supposed to be printing output from the encrypt.py file. I also added more flush statements to ensure they were being sent out at the right time because they sometimes got sent out late.
+        b) my checking system for if strings were alphabetic characters wasn't working because i was checking the wrong input since it was saved under two different variables
+        c) the quit statements weren't showing up in the logger file, I had to move the break statement in logger.py and add the logger function to display them
+    b) I accomplished my goal for this session; I figured out what was wrong with the output through the pipe by comparing my code with the example code from class and noticed that even though I was sending out output to the driver program, the driver program wasn't doing anything with the input it was receiving. By adding the print statements it actually printed what was being inputted by the encryption file. With this and some smaller problems, I was able to finish the project.
